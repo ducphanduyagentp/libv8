@@ -53,12 +53,6 @@ jobs:
         with:
           archive-name: ${{ env.ARCHIVE_NAME }}
 
-      - name: Build V8 for macOS (${{ runner.arch }})
-        if: startsWith(matrix.os, 'macos')
-        uses: ./.github/actions/build-macos
-        with:
-          archive-name: ${{ env.ARCHIVE_NAME }}
-
       - name: Build V8 for Windows
         if: startsWith(matrix.os, 'windows')
         uses: ./.github/actions/build-windows
