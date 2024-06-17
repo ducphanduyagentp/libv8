@@ -29,7 +29,7 @@ if "%RUNNER_ARCH%"=="X86" (
 ) else if "%RUNNER_ARCH%"=="ARM64" (
   set "targetCpu=arm64"
 ) else if "%RUNNER_ARCH%"=="X64" (
-  set "targetCpu=x64"
+  set "targetCpu=x86"
 ) else if "%RUNNER_ARCH%"=="ARM" (
   set "targetCpu=arm"
 ) else (
@@ -81,7 +81,7 @@ call gn args ".\out\release" --list > "%dir%\gn-args_%os%.txt"
 type "%dir%\gn-args_%os%.txt"
 echo ==================== Build args end ====================
 
-call ninja -C ".\out\release" -j %NUMBER_OF_PROCESSORS% v8_monolith
+call ninja -C ".\out\release" -j %NUMBER_OF_PROCESSORS%
 if errorlevel 1 (
   echo Build failed.
   exit /b %errorlevel%
