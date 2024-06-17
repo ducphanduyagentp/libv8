@@ -10,7 +10,7 @@ jobs:
     name: Build V8
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-13, macos-latest, windows-latest]
+        os: [windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout Code
@@ -29,18 +29,6 @@ jobs:
         if: runner.os == 'Windows'
         shell: pwsh
         run: .\.github\workflows\scripts\archive-name.ps1
-
-      - name: Build Release for Linux
-        if: startsWith(matrix.os, 'ubuntu')
-        uses: ./.github/actions/build-linux
-        with:
-          archive-name: ${{ env.ARCHIVE_NAME }}
-
-      - name: Build Release for macOS (${{ runner.arch }})
-        if: startsWith(matrix.os, 'macos')
-        uses: ./.github/actions/build-macos
-        with:
-          archive-name: ${{ env.ARCHIVE_NAME }}
 
       - name: Build Release for Windows
         if: startsWith(matrix.os, 'windows')
