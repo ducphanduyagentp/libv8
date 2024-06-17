@@ -87,7 +87,7 @@ if errorlevel 1 (
   exit /b %errorlevel%
 )
 
-dir ".\out\release\obj\v8_*.lib"
+dir ".\out\release\"
 
 popd
 
