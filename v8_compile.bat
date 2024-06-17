@@ -38,7 +38,7 @@ if "%RUNNER_ARCH%"=="X86" (
   ) else if "%PROCESSOR_ARCHITECTURE%"=="ARM64" (
     set "targetCpu=arm64"
   ) else (
-    set "targetCpu=x64"
+    set "targetCpu=x86"
   )
 )
 
@@ -81,7 +81,7 @@ call gn args ".\out\release" --list > "%dir%\gn-args_%os%.txt"
 type "%dir%\gn-args_%os%.txt"
 echo ==================== Build args end ====================
 
-call ninja -C ".\out\release" -j %NUMBER_OF_PROCESSORS%
+call ninja -C ".\out\release" -j %NUMBER_OF_PROCESSORS% libv8.dll
 if errorlevel 1 (
   echo Build failed.
   exit /b %errorlevel%

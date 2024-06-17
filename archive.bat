@@ -27,7 +27,7 @@ if "%archiveName%"=="" (
     ) else if "%PROCESSOR_ARCHITECTURE%"=="ARM64" (
       set "arch=arm64"
     ) else (
-      set "arch=x64"
+      set "arch=x86"
     )
   )
 
@@ -52,7 +52,7 @@ if errorlevel 1 (
 
 pushd "%outputDir%"
 
-call 7z a -r "%dir%\%archive%" .
+call 7z a -bb3 -r "%dir%\%archive%" .
 if errorlevel 1 (
   echo Failed to archive.
   exit /b %errorlevel%
